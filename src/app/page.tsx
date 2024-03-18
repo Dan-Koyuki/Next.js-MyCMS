@@ -13,10 +13,7 @@ export default function Home() {
           powerful features.
         </p>
         <p>
-          Create and organize your content with ease, whether you're publishing
-          blog posts, articles, portfolios, or multimedia-rich pages. CryoHub's
-          flexible architecture adapts to your unique needs, allowing you to
-          customize layouts, styles, and content structures effortlessly.
+          {"Create and organize your content with ease, whether you\'re publishing blog posts, articles, portfolios, or multimedia-rich pages. CryoHub\'s flexible architecture adapts to your unique needs, allowing you to customize layouts, styles, and content structures effortlessly."}
         </p>
         <p>
           Built on Next.js and MongoDB, CryoHub leverages cutting-edge
@@ -26,11 +23,7 @@ export default function Home() {
           development process.
         </p>
         <p>
-          With CryoHub, you're in control. Manage your database connections,
-          configure settings, and personalize your CMS experience to suit your
-          workflow and preferences. Enjoy peace of mind knowing that your
-          content is secure and accessible, backed by robust security measures
-          and best practices.
+          {"With CryoHub, you\'re in control. Manage your database connections, configure settings, and personalize your CMS experience to suit your workflow and preferences. Enjoy peace of mind knowing that your content is secure and accessible, backed by robust security measures and best practices."}
         </p>
       </div>
     </main>

@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import AuthModal from "../tools/auth.modal";
+import Register from "../authentication/register.modal";
+import Login from "../authentication/login.modal";
 
 const LandingTop = () => {
   const [modalState, setModalState] = useState("none");
@@ -57,13 +58,12 @@ const LandingTop = () => {
         </button>
       </div>
 
-      {isModalOpen && (
-        <AuthModal
-          state={modalState}
-          modalSetting={isModalOpen}
-          closeFunc={CloseModal}
-        />
-      )}
+      {isModalOpen &&
+        (modalState === "Sign Up" ? (
+          <Register modalSetting={isModalOpen} closeFunc={CloseModal} />
+        ) : (
+          <Login modalSetting={isModalOpen} closeFunc={CloseModal} />
+        ))}
     </div>
   );
 };
