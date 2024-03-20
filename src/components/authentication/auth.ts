@@ -5,11 +5,11 @@ interface dataResponse {
   data: {
     token: string;
   };
-  status: string
+  status: string;
 }
 
 interface AccountResponse {
-  data: {token: string};
+  data: { token: string };
   error: AxiosError | null;
   isLoading: boolean;
   isSuccess: boolean;
@@ -18,6 +18,7 @@ interface AccountResponse {
 export type AuthProps = {
   modalSetting: boolean;
   closeFunc: () => void;
+  tokenSetter: () => void;
 };
 
 interface RegisterModel {
@@ -31,24 +32,27 @@ interface LoginModel {
   password: string;
 }
 
-export const register = async (AccountData: RegisterModel) : Promise<AccountResponse> => {
-
+export const register = async (AccountData: RegisterModel) => {
   const url = baseURL + "api/auth/register";
 
   const Response: AccountResponse = {
     data: {
-      token: ""
+      token: "",
     },
     error: null,
     isLoading: false,
-    isSuccess: false
+    isSuccess: false,
   };
 
   Response.isLoading = true;
   try {
-    const response: AxiosResponse<dataResponse> = await axios.post(url, AccountData);
+    const response: AxiosResponse<dataResponse> = await axios.post(
+      url,
+      AccountData
+    );
     Response.data = response.data.data;
     Response.isSuccess = true;
+    localStorage.setItem("token", Response.data.token);
   } catch (error: any) {
     Response.error = error;
   } finally {
@@ -56,13 +60,9 @@ export const register = async (AccountData: RegisterModel) : Promise<AccountResp
   }
 
   console.log(Response);
-
-  return Response;
 };
 
-export const login = async (
-  AccountData: LoginModel
-): Promise<AccountResponse> => {
+export const login = async (AccountData: LoginModel) => {
   const url = baseURL + "api/auth/login";
 
   const Response: AccountResponse = {
@@ -82,6 +82,7 @@ export const login = async (
     );
     Response.data = response.data.data;
     Response.isSuccess = true;
+    localStorage.setItem("token", Response.data.token);
   } catch (error: any) {
     Response.error = error;
   } finally {
@@ -89,6 +90,29 @@ export const login = async (
   }
 
   console.log(Response);
-
-  return Response;
 };
+
+export const verify = async (token: string) : Promise<boolean> => {
+  const url = baseURL + "api/auth/verify";
+
+  const Response = {
+    status: "",
+    message: "",
+    error: "",
+    isLoading: false
+  }
+
+  Response.isLoading = true;
+  try {
+    const response: AxiosResponse = await axios.get(url, {headers: {authorization: token}});
+    Response.status = response.data.status;
+    Response.message = response.data.message;
+  } catch (error : any) {
+    Response.error = error;
+    return false;
+  } finally {
+    Response.isLoading = false;
+  }
+
+  return true;
+}

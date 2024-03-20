@@ -2,8 +2,12 @@
 
 import React, { useState } from "react";
 import { AuthProps, login } from "./auth";
+import { useRouter } from "next/navigation";
+import { decodeToken } from "../utils/verify.utils";
 
-const Login = ({ modalSetting, closeFunc }: AuthProps) => {
+const Login = ({ modalSetting, closeFunc, tokenSetter }: AuthProps) => {
+  const router = useRouter();
+
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -20,6 +24,10 @@ const Login = ({ modalSetting, closeFunc }: AuthProps) => {
     try {
       await login({ username, password});
       close();
+      const token = String(localStorage.getItem('token'));
+      decodeToken(token);
+      tokenSetter();
+      router.push('home');
     } catch (error) {
       console.error("Login failed:", error);
       alert("Login failed. Please try again later.");
