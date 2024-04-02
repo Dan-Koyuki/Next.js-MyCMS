@@ -9,7 +9,7 @@ const LandingPageLink = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isVerified, setVerified] = useState<boolean>(false);
   const [token, setToken] = useState("");
-  const [isDark, setTheme] = useState(false);
+  const [isDark, setTheme] = useState(true);
 
   /**
    * Token
@@ -46,19 +46,19 @@ const LandingPageLink = () => {
    * Theme
    */
   useEffect(() => {
-    const theme = localStorage.getItem('theme')
-    if (theme === 'dark') setTheme(true);
-  }, [])
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") setTheme(true);
+  }, []);
 
-  useEffect(() =>{
-    if (isDark){
-      document.documentElement.classList.add('dark');
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
-  }, [isDark])
+  }, [isDark]);
   const changeTheme = () => {
     setTheme(!isDark);
   };
@@ -81,7 +81,9 @@ const LandingPageLink = () => {
       ) : (
         <div
           id="Platform-Nav-Links"
-          className="md:mr-2 flex flex-row gap-2 md:gap-6"
+          className="
+            flex flex-row gap-2 
+            md:gap-6 md:mr-2"
         >
           <button
             onClick={SignIn}

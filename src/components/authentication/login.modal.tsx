@@ -44,7 +44,7 @@ const Login = ({ modalSetting, closeFunc, tokenSetter }: AuthProps) => {
       <div className="w-full">
         <div className="flex flex-row items-center justify-between mb-4 pt-2 px-5 bg-blue-300">
           <div className="font-semibold text-3xl">
-            <h1>Login</h1>
+            <h1>Sign In</h1>
           </div>
           <button
             onClick={close}
