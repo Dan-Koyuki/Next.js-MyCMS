@@ -15,7 +15,7 @@ const Home = () => {
         <div className="sticky w-1/4">
           <SideBar />
         </div>
-        <div className="relative w-3/4 overflow-y-auto">
+        <div className="relative w-3/4">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
             doloribus, perspiciatis impedit iure magnam, temporibus sunt ea aut
